@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Package Lockbox</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- BookExchange JS -->
+    <script src="BookExchange.js"></script>
+    
+    <script>
+        $(document).ready(function()
+        {
+            $("input").focus(function()
+            {
+                $(this).css("background-color", "#bbbbbb");
+            });
+            $("input").blur(function()
+            {
+                $(this).css("background-color", "#ffffff");
+            });
+        });
+
+    </script>
+   
+</head>
+
+    
+<body>
+    
+    <!---Nav Bar--->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid" style="padding-right: 15px; padding-left: 15px">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Smart Package Lockbox</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="myLockbox.html">My LockBox</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="profile.html"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
+                        <li><a href = "#" onclick = "logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>  
+        </nav>
+    
+        <br>
+        <br>
+        <br>
+        <!---Current Info--->
+        <div class="row">
+            <div class="col-md-6">
+                <h4 style="padding-left: 25px">Current Profile</h4>
+                <div style="padding-left: 35px">
+                <div><b>Email:</b>
+                <text id="currentEmail">N/A</text></div>
+                <br>
+                <div><b>Phone Number:</b>
+                <text id="currentPhone">N/A</text></div>
+                </div>
+            </div>
+        </div>
+    
+        <h3 style="padding-left: 25px; padding-top: 20px">Contact Settings</h3>
+        
+        <form style="padding-left: 25px; padding-top: 20px">
+            <p>Recieve Email Notifications</p>
+            <input type="radio" name="emailNotifications" value="emailYes" checked> Yes<br>
+            <input type="radio" name="emailNotifications" value="emailNo"> No<br>
+        </form>
+        <form style="padding-left: 25px; padding-top: 20px">
+            <p>Recieve Text Notifications</p>
+            <input type="radio" name="textNotifications" value="textYes" checked> Yes<br>
+            <input type="radio" name="textNotifications" value="textNo"> No<br>
+        </form> 
+    
+        <!--- Update Info --->
+        <h3 style="padding-left: 25px; padding-top: 20px">Make Changes</h3>
+        <br>
+        
+        <div class="form-horizontal" role="form" id="updateProfileForm">
+        
+        <!---Change Email --->
+            <div class="form-group">
+                <label for="changEmail1" class="col-sm-2 control-label">
+                    Change Email:
+                </label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="changeEmail">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="changeEmail2" class="col-sm-2 control-label">
+                    Confirm Email:
+                </label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="changeEmailConfirm">
+                </div>
+            </div>
+             <div class="col-sm-offset-2 col-sm-10">
+                    
+                    <button type="submit" class="btn btn-default" id="changeEmailButton" onclick="changeEmail()">Confirm
+                    </button>
+            </div>
+            <br>
+            <br>
+            <br>
+           
+        
+        <!---Change Password---->
+            <div class="form-group">
+                
+                <label for="changePassword1" class="col-sm-2 control-label">
+                    Change Password:
+                </label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="changePassword">
+                        </div>
+            </div>
+            <div class="form-group">
+                
+                <label for="changePassword2" class="col-sm-2 control-label">
+                    Confirm Password:
+                </label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="changePasswordConfirm">
+                </div>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+                    
+                    <button type="submit" class="btn btn-default" id="changePasswordButton" onclick="changePassword()">Confirm
+                    </button>
+            </div>
+            <br>
+            <br>
+            <br>
+        
+        <!--- Change Phone Number --->
+            <div class="form-group">
+                <label for="changePhoneNumber" class="col-sm-2 control-label">
+                    Edit Phone Number:
+                </label>
+                <div class="col-sm-10">
+                    <input type="tel" class="form-control" id="changePhoneNumber">
+                </div>
+            </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    
+                    <button type="submit" class="btn btn-default" id="changePhoneNumberButton" onclick="changePhoneNumber()">Confirm
+                    </button>
+                </div>
+        </div>
+        <br>
+        <br> 
+        <br>            
+                        
+        <!-- Firebase Initialization -->
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-database.js"></script>
+        <!--<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>-->
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-functions.js"></script>
+        <script>
+        // Initialize Firebase
+            var config = {
+            apiKey: "AIzaSyAEuQjImma2IZGPI20na8KDHhuz1nt-k_k",
+            authDomain: "smart-package-lockbox.firebaseapp.com",
+            databaseURL: "https://smart-package-lockbox.firebaseio.com",
+            projectId: "smart-package-lockbox",
+            storageBucket: "smart-package-lockbox.appspot.com",
+            messagingSenderId: "162722249613"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="index.js"></script>
+                        
+
+    </body>
+</html>

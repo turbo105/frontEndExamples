@@ -1,0 +1,207 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Package Lockbox</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- BookExchange JS -->
+    <script src="BookExchange.js"></script>
+    
+    <script>
+        $(document).ready(function()
+        {
+            $("input").focus(function()
+            {
+                $(this).css("background-color", "#bbbbbb");
+            });
+            $("input").blur(function()
+            {
+                $(this).css("background-color", "#ffffff");
+            });
+        });
+
+    </script>
+    
+    <style>
+    table {
+        /*font-family: arial, sans-serif;*/
+        border-collapse: collapse;
+        width: 60%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    </style>
+   
+</head>
+
+    
+<body>
+    
+    <!---Nav Bar--->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid" style="padding-right: 15px; padding-left: 15px">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Smart Package Lockbox</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="myLockbox.html">My LockBox</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
+                       <li><a href = "#" onclick = "logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>  
+        </nav>
+    
+        <!---Lockbox Info--->
+        <br>
+        <br>
+        <br>
+        <!--<div style="padding-left: 25px; padding-top: 15px"><button type="submit" class="btn btn-default" id="addLockboxButton" onclick="addLockbox()">Add Lockbox</button></div>-->
+        <h3 style="padding-left: 25px">Add Lockboxes:</h3>
+        <br>
+        
+        <div style="padding-left: 25px"id="addLockboxPopup">
+            <div class="form-group">
+                <label for="addLockbox" class="col-sm-2 control-label">
+                    Lockbox ID:
+                </label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" id="addingLockboxID" maxlength= "6" size="6">
+                <button type="submit" class="btn btn-default" id="addLockboxButton" onclick="addLockbox()">Add Lockbox</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>    
+    
+        <h3 style="padding-left: 25px">Current Lockboxes:</h3>
+        <br>
+            <ul>
+            <li><h4><b>654321</b></h4></li>
+            </ul>
+        <div style="padding-left: 45px">
+            <div><b>Alarm Status:</b>
+            <text id="userAlarmStatus">N/A</text></div>
+  
+            <div><b>Lid Status:</b>
+            <text id="userLidStatus">N/A</text></div>
+            
+            <div><b>Lock Status:</b>
+            <text id="userLockStatus">N/A</text></div>
+
+            <div><b>Power Status:</b>
+            <text id="userPowerStatus">N/A</text></div>
+        </div>
+        <br>
+        <div style="padding-left: 45px">
+            
+            <table>
+                <tr>
+                <th>Passcode</th>
+                <th>Value</th>
+                <th>Edit</th>
+                </tr>
+                <tr>
+                <td>Admin</td>
+                <td><text id="userAdminPass">N/A</text></td>
+                <td><span class="glyphicon glyphicon-asterisk" style="color:gray"></span></td>
+                </tr>
+                <tr>
+                <td>Primary</td>
+                <td><text id="userPrimaryPass">N/A</text></td>
+                <td><input type="numer" id="newPrimaryPass" maxlength= "4" size="4"><a href="#"> <span class="glyphicon glyphicon-pencil" style="color:mediumblue" onclick="updatePrimaryPass()"></span></a></td>
+                </tr>
+                <tr>
+                <td>Secondary</td>
+                <td><text id="userSecondaryPass">N/A</text></td>
+                <td><input type="numer" id="newSecondaryPass" maxlength= "4" size="4"><a href="#"> <span class="glyphicon glyphicon-pencil" style="color:mediumblue" onclick="updateSecondaryPass()"></span></a></td>
+                </tr>
+                <tr>
+                <td>Temporary 1</td>
+                <td><text id="userTemp1Pass">N/A</text></td>
+                <td><input type="numer" id="newTemp1Pass" maxlength= "4" size="4"><a href="#"> <span class="glyphicon glyphicon-pencil" style="color:mediumblue" onclick="updateTemp1Pass()"></span></a></td>
+                </tr>
+                <tr>
+                <td>Temporary 2</td>
+                <td><text id="userTemp2Pass">N/A</text></td>
+                <td><input type="numer" id="newTemp2Pass" maxlength= "4" size="4"><a href="#"> <span class="glyphicon glyphicon-pencil" style="color:mediumblue" onclick="updateTemp2Pass()"></span></a></td>
+                </tr>
+                <tr>
+                <td>Temporary 3</td>
+                <td><text id="userTemp3Pass">N/A</text></td>
+                <td><input type="numer" id="newTemp3Pass" maxlength= "4" size="4"><a href="#"> <span class="glyphicon glyphicon-pencil" style="color:mediumblue" onclick="updateTemp3Pass()"></span></a></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            
+            <div><button type="submit" class="btn btn-default" onclick="forceUnlock()">Unlock Box</button></div>
+            <br>
+            <div><button type="submit" class="btn btn-default" onclick="forceAlarmOff()">Alarm Off</button></div>
+            
+        <!--- Non Table display of passcode data -->    
+           <!-- <div><b>Passcodes:</b></div>
+            <div style="padding-left: 10px">
+            <div><b>Admin:</b>
+            <text id="userAdminPass">N/A</text></div>
+            <div><b>Primary:</b>
+            <text id="userPrimaryPass">N/A</text></div>
+            <div><b>Secondary:</b>
+            <text id="userSecondaryPass">N/A</text></div>
+            <div><b>Temp1:</b>
+            <text id="userTemp1Pass">N/A</text></div>
+            <div><b>Temp2:</b>
+            <text id="userTemp2Pass">N/A</text></div>
+            <div><b>Temp3:</b>
+            <text id="userTemp3Pass">N/A</text></div>
+            </div>-->
+            
+        </div>    
+     
+        <!-- Firebase Initialization -->
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-database.js"></script>
+        <!--<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>-->
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-functions.js"></script>
+        <script>
+        // Initialize Firebase
+            var config = {
+            apiKey: "AIzaSyAEuQjImma2IZGPI20na8KDHhuz1nt-k_k",
+            authDomain: "smart-package-lockbox.firebaseapp.com",
+            databaseURL: "https://smart-package-lockbox.firebaseio.com",
+            projectId: "smart-package-lockbox",
+            storageBucket: "smart-package-lockbox.appspot.com",
+            messagingSenderId: "162722249613"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="index.js"></script>
+    
+    </body>
+</html>

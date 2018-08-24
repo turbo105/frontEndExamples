@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Package Lockbox</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+     <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document).ready(function()
+        {
+            $("input").focus(function()
+            {
+                $(this).css("background-color", "#bbbbbb");
+            });
+            $("input").blur(function()
+            {
+                $(this).css("background-color", "#ffffff");
+            });
+        });
+
+    </script>   
+</head>
+
+    
+<body>
+    
+    <!---Nav Bar--->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid" style="padding-right: 15px; padding-left: 15px">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Smart Package Lockbox</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="myLockbox.html">My Lockbox</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Profile<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html"><span class="glyphicon glyphicon-edit"></span> Edit Profile</a></li>
+                        <li><a href = "#" onclick = "logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </div>  
+        </nav>
+        
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;">
+        <img class="w3-image" src="background.png" alt="BookExchange Banner" width="1500" height="800">
+        <div class="w3-display-middle w3-margin-top w3-center">
+            <h1 class="w3-xxlarge w3-text-white"><span class="w3-black w3-opacity-min" style="padding-left: 5px; padding-right: 3px"><b>SPL</b></span> <span class="w3-hide-small w3-text-light-grey">Smart Package Lockbox</span></h1>
+        </div>
+    </header>
+        
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full w3-margin-bottom">
+        <ul class="w3-ul w3-border w3-white w3-center">
+            <li class="w3-amber w3-xlarge w3-padding-32">Welcome To Smart Package Lockbox!</li>
+            <li class="w3-padding-16">Smart Package Lockbox is an easy to use and secure way to help ensure that your deliveries are safely dropped off even when you are not around. With multiple access options, alerts to email and phone, and real time updates, your packages are in good hands.</li>
+        </ul>
+      </div> 
+    </div>
+      
+     <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full w3-margin-bottom">
+        <ul class="w3-ul w3-border w3-white w3-center">
+            <li class="w3-amber w3-xlarge w3-padding-32"><font black="white">Get The App</font></li>
+            <li class="w3-padding-16">Download Our App and Start Securing Your Deliveries</li>
+        </ul>
+      </div> 
+    </div>
+
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full w3-margin-bottom">
+        <ul class="w3-ul w3-border w3-white w3-center">
+          <li class="w3-light-grey w3-xlarge w3-padding-32">Creators</li>
+          <li class="w3-padding-16">Dominic Amaliftano</li>
+          <li class="w3-padding-16">Michael Light</li>
+          <li class="w3-padding-16">Daniel Corredor</li>
+          <li class="w3-padding-16">Brandon Dziewior</li>
+        </ul>
+      </div>
+    </div>
+            
+     <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full w3-margin-bottom">
+        <ul class="w3-ul w3-border w3-white w3-center">
+         <li class="w3-light-grey w3-xlarge w3-padding-32">Contact Us</li>
+            <li>Support: <a href="mailto: smartPackageLockboxSupport@gmail.com">smartPackageLockbox@gmail.com</a></li>
+        </ul>
+      </div>
+     </div>
+    
+     <!-- Firebase Initialization -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-database.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-functions.js"></script>
+    <script>
+    // Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyAEuQjImma2IZGPI20na8KDHhuz1nt-k_k",
+        authDomain: "smart-package-lockbox.firebaseapp.com",
+        databaseURL: "https://smart-package-lockbox.firebaseio.com",
+        projectId: "smart-package-lockbox",
+        storageBucket: "smart-package-lockbox.appspot.com",
+        messagingSenderId: "162722249613"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="index.js"></script>
+    
+</body>
+</html>
